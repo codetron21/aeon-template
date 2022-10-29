@@ -2,8 +2,10 @@ package com.example.aeon.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,6 +29,7 @@ public class KaryawanDto extends BaseDto {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name="id")
   @JsonProperty("id")
   private Integer id;
 
@@ -37,7 +40,7 @@ public class KaryawanDto extends BaseDto {
   @Temporal(TemporalType.DATE)
   @Column(name = "dob")
   @JsonProperty("tanggal_lahir")
-  @JsonFormat(pattern = "yyyy-MM-dd")
+  @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Jakarta")
   private Date dob;
 
   @Column(name = "jk")
@@ -52,12 +55,12 @@ public class KaryawanDto extends BaseDto {
   @JsonProperty("status")
   private String status;
 
-  @OneToOne(mappedBy = "karyawan")
+  @OneToOne(mappedBy = "karyawan", cascade = CascadeType.ALL)
   @JsonProperty(value = "karyawan_detail")
   private KaryawanDetailDto karyawanDetail;
 
-  @OneToMany(mappedBy = "karyawan")
+  @OneToMany(mappedBy = "karyawan", cascade = CascadeType.ALL)
   @JsonProperty(value = "list_rekening")
-  private List<RekeningDto> rekening;
+  private List<RekeningDto> rekening = new ArrayList<>();
 
 }

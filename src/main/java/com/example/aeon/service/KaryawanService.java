@@ -17,11 +17,17 @@ public class KaryawanService {
   private KaryawanRepository repository;
 
   public Integer updateKaryawan(KaryawanDto dto, Integer id) {
-    if (!repository.existsById(id)) {
+    KaryawanDto karyawan = repository.findById(id).orElse(null);
+    if (karyawan == null) {
       return null;
     }
 
+    Integer karyawanDetailId = karyawan.getKaryawanDetail().getId();
+
     dto.setId(id);
+    dto.getKaryawanDetail().setId(karyawanDetailId);
+    dto.getKaryawanDetail().setKaryawan(dto);
+
     repository.save(dto);
 
     return id;
@@ -59,6 +65,7 @@ public class KaryawanService {
   }
 
   public KaryawanDto createKaryawan(KaryawanDto dto) {
+    dto.getKaryawanDetail().setKaryawan(dto);
     return repository.save(dto);
   }
 

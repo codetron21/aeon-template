@@ -1,5 +1,6 @@
 package com.example.aeon.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,9 +23,11 @@ public class TrainingDto extends BaseDto {
   private Integer id;
 
   @Column(name = "nama_pengajar", nullable = false)
+  @JsonProperty("nama_pengajar")
   private String namaPengajar;
 
   @Column(name = "tema", nullable = false)
+  @JsonProperty("tema")
   private String tema;
 
 }

@@ -1,5 +1,6 @@
 package com.example.aeon.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import javax.persistence.Column;
@@ -30,6 +31,7 @@ public class KaryawanTrainingDto extends BaseDto{
   @Column(name="tanggal_training")
   @Temporal(TemporalType.DATE)
   @JsonProperty(value="tanggal_training")
+  @JsonFormat(timezone = "Asia/Jakarta")
   private Date tanggalTraining;
 
   @ManyToOne

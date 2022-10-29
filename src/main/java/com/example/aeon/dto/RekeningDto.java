@@ -38,7 +38,7 @@ public class RekeningDto extends BaseDto{
   private String nomor;
 
   @ManyToOne
-  @JoinColumn(name="karyawan_id")
+  @JoinColumn(name="id_karyawan")
   private KaryawanDto karyawan;
 
 }

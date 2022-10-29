@@ -1,8 +1,10 @@
 package com.example.aeon.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +24,7 @@ public class KaryawanDetailDto {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id")
   @JsonProperty("id")
   private Integer id;
 
@@ -33,8 +36,9 @@ public class KaryawanDetailDto {
   @JsonProperty("npwp")
   private String npwp;
 
-  @OneToOne
-  @JoinColumn(name = "id_karyawan")
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "id_karyawan", nullable = false)
+  @JsonIgnore
   private KaryawanDto karyawan;
 
 }

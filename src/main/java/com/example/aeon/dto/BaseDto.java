@@ -1,5 +1,6 @@
 package com.example.aeon.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
@@ -26,16 +27,19 @@ public abstract class BaseDto implements Serializable {
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @JsonProperty(value="created_date")
+    @JsonFormat(timezone = "Asia/Jakarta")
     private Date createdDate;
 
     @Column(name = "updated_date")
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @JsonProperty(value="updated_date")
+    @JsonFormat(timezone = "Asia/Jakarta")
     private Date updatedDate;
 
     @Column(name = "deleted_date")
     @Temporal(TemporalType.TIMESTAMP)
     @JsonProperty(value="deleted_date")
+    @JsonFormat(timezone = "Asia/Jakarta")
     private Date deletedDate;
 }
