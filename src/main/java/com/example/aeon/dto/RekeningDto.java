@@ -1,5 +1,7 @@
 package com.example.aeon.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "rekening")
+@JsonInclude(Include.NON_NULL)
 public class RekeningDto extends BaseDto{
 
   @Id
